@@ -1,15 +1,8 @@
 stages:
-  - build
+  - test
 
-build_laravel:
-  stage: build
-  image: docker:24
-  services:
-    - name: docker:24-dind
-      command: ["--tls=false"]
-  variables:
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
+test_runner:
+  stage: test
+  image: alpine
   script:
-    - docker info
-    - docker build -t mon_app_php .
+    - echo "Runner OK"
