@@ -5,8 +5,11 @@ build_laravel:
   stage: build
   image: docker:24
   services:
-    - docker:dind
+    - name: docker:24-dind
+      command: ["--tls=false"]
   variables:
     DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
   script:
+    - docker info
     - docker build -t mon_app_php .
